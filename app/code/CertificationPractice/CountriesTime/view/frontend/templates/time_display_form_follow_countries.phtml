@@ -1,0 +1,39 @@
+<?php
+/** @var \CertificationPractice\CountriesTime\Block\Form\Data $block */
+$countryCode = $block->getCountryCode();
+?>
+<form name="display_current_time_vietnam_and_us" method="POST" id="display_current_time_vietnam_and_us">
+    <select name="timezone">
+        <option value="Asia/Bangkok">VIETNAM</option>
+        <option value="Africa/Lagos">UK</option>
+    </select>
+    <button type="submit">Get Current Time</button>
+</form>
+<h1 class="curren_time"></h1>
+<script type="text/javascript">
+    require(["jquery"], function ($) {
+        $('#display_current_time_vietnam_and_us').submit(function (e) {
+            e.preventDefault();
+            var timeZone = $('#display_current_time_vietnam_and_us').find('select[name="timezone"]').val();
+            var url = "<?= $block->getBaseUrl() . 'countriestime/form/getcurrenttime'?>";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                showLoader: true,
+                data: {
+                    data: timeZone
+                },
+                success: function (response) {
+                    if (response.current_time) {
+                        $('.curren_time').text(response.current_time);
+                    }
+                },
+                error: function (xhr, status, errorThrown) {
+                    console.log('Error happens. Try again.');
+                }
+            });
+        });
+    });
+</script>
+

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="CertificationPractice\CountriesTime\Block\Form\Data" name="form_time_display" template="CertificationPractice_CountriesTime::time_display_form_follow_countries.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
